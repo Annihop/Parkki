@@ -1,8 +1,10 @@
 <?php
 
+require_once '../src/init.php';
+
   
-  $request = str_replace('/~ahopeela/parkki','',$_SERVER['REQUEST_URI']);
-  $request = strtok($request, '?');
+$request = str_replace($config['urls']['baseUrl'],'',$_SERVER['REQUEST_URI']);
+$request = strtok($request, '?');   
 
 
   if ($request === '/' || $request === '/tapahtumat') {
