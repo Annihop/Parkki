@@ -6,5 +6,9 @@
     return DB::run('SELECT * FROM bp_tapahtuma ORDER BY tap_alkaa;')->fetchAll();
   }
 
+  function haeTapahtuma($id) {
+    return DB::run('SELECT * FROM bp_tapahtuma WHERE idtapahtuma = ?;',[$id])->fetch();
+  }
+
 ?>
  
