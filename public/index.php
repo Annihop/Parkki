@@ -6,13 +6,15 @@ require_once '../src/init.php';
 $request = str_replace($config['urls']['baseUrl'],'',$_SERVER['REQUEST_URI']);
 $request = strtok($request, '?');   
 
+$templates = new League\Plates\Engine('../src/view');
 
-  if ($request === '/' || $request === '/tapahtumat') {
-    echo '<h1>Kaikki tapahtumat</h1>';
-  } else if ($request === '/tapahtuma') {
-    echo '<h1>Yksittäisen tapahtuman tiedot</h1>';
-  } else {
-    echo '<h1>Pyydettyä sivua ei löytynyt :(</h1>';
-  }
+    if ($request === '/' || $request === '/tapahtumat') {
+      echo $templates->render('tapahtumat');
+    } else if ($request === '/tapahtuma') {
+      echo $templates->render('tapahtuma');
+    } else {
+      echo $templates->render('notfound');
+    }
+  
 
 ?> 
