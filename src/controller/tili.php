@@ -28,10 +28,10 @@ function lisaaTili($formdata) {
   // Tarkistetaan, että discord-tunnus on määritelty ja se on
   // muodossa tunnus#0000.
   if (!isset($formdata['discord']) || !$formdata['discord']) {
-    $error['discord'] = "Anna discord-tunnuksesi muodossa tunnus#0000.";
+    $error['discord'] = "Anna Parkki-tunnuksesi muodossa tunnus#0000.";
   } else {
     if (!preg_match("/^.+#\d{4}$/",$formdata['discord'])) {
-      $error['discord'] = "Discord-tunnuksesi muoto on virheellinen.";
+      $error['discord'] = "Parkki-tunnuksesi muoto on virheellinen.";
     }
   }
 
@@ -42,8 +42,12 @@ function lisaaTili($formdata) {
   } else {
     if (!filter_var($formdata['email'], FILTER_VALIDATE_EMAIL)) {
       $error['email'] = "Sähköpostiosoite on virheellisessä muodossa.";
+    } else {
+      if (haeHenkiloSahkopostilla($formdata['email'])) {
+        $error['email'] = "Sähköpostiosoite on jo käytössä.";
+      }
     }
-  }
+    }
 
   // Tarkistetaan, että kummatkin salasanat on annettu ja että
   // ne ovat keskenään samat.
