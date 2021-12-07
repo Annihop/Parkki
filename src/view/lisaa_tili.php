@@ -12,7 +12,7 @@
     <input id="email" type="email" name="email">
   </div>
   <div>
-    <label for="discord">Discord-tunnus:</label>
+    <label for="discord">Parkki-tunnus:</label>
     <input id="discord" type="text" name="discord">
   </div>
   <div>
