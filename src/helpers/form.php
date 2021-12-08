@@ -1,5 +1,4 @@
 <?php
-
 function cleanArrayData($array=[]) {
   $result = array();
   foreach ($array as $key => $value) {

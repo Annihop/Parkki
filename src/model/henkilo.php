@@ -11,8 +11,6 @@
     return DB::run('SELECT * FROM henkilo WHERE email = ?;', [$email])->fetchAll();
   }
 
-  function haeHenkiloSahkopostilla($email) {
-    return DB::run('SELECT * FROM henkilo WHERE email = ?;', [$email])->fetchAll();
-  }
+  
 
 ?>
