@@ -90,6 +90,7 @@ function lisaaTili($formdata) {
     // onnistui rivin lisääminen. Muuten liäämisessä ilmeni
     // ongelma.
     if ($idhenkilo) {
+      
       return [
         "status" => 200,
         "id"     => $idhenkilo,
@@ -113,5 +114,7 @@ function lisaaTili($formdata) {
 
   }
 }
+
+
 
 ?>
