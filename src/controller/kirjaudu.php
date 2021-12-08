@@ -4,7 +4,8 @@
 
   
     require_once(MODEL_DIR . 'henkilo.php');
-    $tiedot = haeHenkilo($email);
+    $tiedot = haeHenkilo
+    ($email);
     $tiedot = array_shift($tiedot);
 
  
