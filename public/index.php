@@ -1,17 +1,14 @@
 
 <?php
-  // Suoritetaan projektin alustusskripti.
+ 
+  session_start();
+
   require_once '../src/init.php';
-  // Siistitään polku urlin alusta ja mahdolliset parametrit urlin lopusta.
-  // Siistimisen jälkeen osoite /~koodaaja/lanify/tapahtuma?id=1 on 
-  // lyhentynyt muotoon /tapahtuma.
+ 
   $request = str_replace($config['urls']['baseUrl'],'',$_SERVER['REQUEST_URI']);
   $request = strtok($request, '?');
-  // Luodaan uusi Plates-olio ja kytketään se sovelluksen sivupohjiin.
   $templates = new League\Plates\Engine(TEMPLATE_DIR); 
   
-  // Selvitetään mitä sivua on kutsuttu ja suoritetaan sivua vastaava
-  // käsittelijä.
   switch ($request) {
     case '/':
     case '/tapahtumat':
@@ -53,7 +50,9 @@
         if (isset($_POST['laheta'])) {
           require_once CONTROLLER_DIR . 'kirjaudu.php';
           if (tarkistaKirjautuminen($_POST['email'],$_POST['salasana'])) {
-            echo "Kirjautuminen ok!";
+            $_SESSION['user'] = $_POST['email'];
+            header("Location: " . $config['urls']['baseUrl']);
+  
           } else {
             echo $templates->render('kirjaudu', [ 'error' => ['virhe' => 'Väärä käyttäjätunnus tai salasana!']]);
           }
