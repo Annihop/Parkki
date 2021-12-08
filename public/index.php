@@ -16,6 +16,7 @@
       $tapahtumat = haeTapahtumat();
       echo $templates->render('tapahtumat',['tapahtumat' => $tapahtumat]);
       break;
+
     case '/tapahtuma':
       require_once MODEL_DIR . 'tapahtuma.php';
       $tapahtuma = haeTapahtuma($_GET['id']);
@@ -25,6 +26,7 @@
         echo $templates->render('tapahtumanotfound');
       }
       break;
+
     case '/lisaa_tili':
       if (isset($_POST['laheta'])) {
         $formdata = cleanArrayData($_POST);
@@ -40,20 +42,22 @@
         }
         echo $templates->render('lisaa_tili', ['formdata' => $formdata, 'error' => $tulos['error']]);
         break;
-      } else {
-       
-        echo $templates->render('lisaa_tili', ['formdata' => [], 'error' => []]);
+
+        } else {
+          echo $templates->render('lisaa_tili', ['formdata' => [], 'error' => []]);
         break;
       }
       
       case "/kirjaudu":
-        if (isset($_POST['laheta'])) {
-          require_once CONTROLLER_DIR . 'kirjaudu.php';
-          if (tarkistaKirjautuminen($_POST['email'],$_POST['salasana'])) {
-            $_SESSION['user'] = $_POST['email'];
-            header("Location: " . $config['urls']['baseUrl']);
-  
-          } else {
+        case "/kirjaudu":
+          if (isset($_POST['laheta'])) {
+            require_once CONTROLLER_DIR . 'kirjaudu.php';
+            if (tarkistaKirjautuminen($_POST['email'],$_POST['salasana'])) {
+              session_regenerate_id();
+              $_SESSION['user'] = $_POST['email'];
+              header("Location: " . $config['urls']['baseUrl']);
+            } else {
+    
             echo $templates->render('kirjaudu', [ 'error' => ['virhe' => 'Väärä käyttäjätunnus tai salasana!']]);
           }
         } else {
@@ -61,11 +65,14 @@
         }
         break;
   
-        case "/logout":
+      case "/logout":
           require_once CONTROLLER_DIR . 'kirjaudu.php';
           logout();
           header("Location: " . $config['urls']['baseUrl']);
           break;
+      
+          
+      
     
   
     default:
