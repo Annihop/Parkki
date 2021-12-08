@@ -16,13 +16,13 @@
   }
 
 
-  function paivitaVahvavain($email,$avain) {
-    return DB::run('UPDATE henkilo SET vahvavain = ? WHERE email = ?', [$avain,$email])->rowCount();
-  }
+  //function paivitaVahvavain($email,$avain) {
+   // return DB::run('UPDATE henkilo SET vahvavain = ? WHERE email = ?', [$avain,$email])->rowCount();
+  //}
 
-  function vahvistaTili($avain) {
-    return DB::run('UPDATE henkilo SET vahvistettu = TRUE WHERE vahvavain = ?', [$avain])->rowCount();
-  }
+  //function vahvistaTili($avain) {
+    //return DB::run('UPDATE henkilo SET vahvistettu = TRUE WHERE vahvavain = ?', [$avain])->rowCount();
+  //}
 
 
 ?>
