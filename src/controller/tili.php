@@ -135,6 +135,20 @@ function lisaaTili($formdata, $baseurl='') {
   }
 }
 
+function lahetaVahvavain($email,$url) {
+  $message = "Hei!\n\n" . 
+             "Olet rekisteröitynyt Parkki-palveluun tällä\n" . 
+             "sähköpostiosoitteella. Klikkaamalla alla olevaa\n" . 
+             "linkkiä vahvistat käyttämäsi sähköpostiosoitteen\n" .
+             "ja pääset käyttämään Parkki-palvelua.\n\n" . 
+             "$url\n\n" .
+             "Jos et ole rekisteröitynyt Parkki- palveluun, niin\n" . 
+             "silloin tämä sähköposti on tullut sinulle\n" .
+             "vahingossa. Siinä tapauksessa ole hyvä ja\n" .
+             "poista tämä viesti.\n\n".
+             "Terveisin, Parkki Business Park";
+  return mail($email,'Parkki-tilin aktivointilinkki',$message);
+}
 
 
 ?>
