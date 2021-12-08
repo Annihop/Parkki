@@ -35,7 +35,7 @@ function lisaaTili($formdata) {
     }
   }
 
-  // Tarkistetaan, että sähköpostiosoite on määritelty ja se on
+    // Tarkistetaan, että sähköpostiosoite on määritelty ja se on
   // oikeassa muodossa.
   if (!isset($formdata['email']) || !$formdata['email']) {
     $error['email'] = "Anna sähköpostiosoitteesi.";
@@ -47,7 +47,8 @@ function lisaaTili($formdata) {
         $error['email'] = "Sähköpostiosoite on jo käytössä.";
       }
     }
-    }
+  }
+
 
   // Tarkistetaan, että kummatkin salasanat on annettu ja että
   // ne ovat keskenään samat.
