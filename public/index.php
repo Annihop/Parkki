@@ -44,7 +44,7 @@
         echo $templates->render('lisaa_tili', ['formdata' => $formdata, 'error' => $tulos['error']]);
         break;
       } else {
-        echo $templates->render('lisaa_tili');
+       
         echo $templates->render('lisaa_tili', ['formdata' => [], 'error' => []]);
         break;
       }
