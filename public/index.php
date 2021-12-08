@@ -68,10 +68,19 @@
           echo $templates->render('lisaa_tili', ['formdata' => [], 'error' => []]);
         break;
       }
-      
-      case '/kirjaudu':
-        echo $templates->render('kirjaudu', [ 'error' => []]);
+      case "/kirjaudu":
+        if (isset($_POST['laheta'])) {
+          require_once CONTROLLER_DIR . 'kirjaudu.php';
+          if (tarkistaKirjautuminen($_POST['email'],$_POST['salasana'])) {
+            echo "Kirjautuminen ok!";
+          } else {
+            echo $templates->render('kirjaudu', [ 'error' => ['virhe' => 'Väärä käyttäjätunnus tai salasana!']]);
+          }
+        } else {
+          echo $templates->render('kirjaudu', [ 'error' => []]);
+        }
         break;
+  
   
   
       case "/logout":
